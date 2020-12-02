@@ -1,0 +1,86 @@
+ {% if request.session.cart.items %}
+    <div class="container">
+        <p class="font-size-5" >Carrito de Compra</p>
+        <table class="table table-bordered table-hover bg-success text-center" style="padding:4vh">
+	    <thead>
+		    <tr>
+                <th class="text-light">Nombre</th>
+                <th class="text-light">Unidades</th>
+                <th class="text-light">Precio Acumulado</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        {% for key,value in request.session.cart.items %}
+                    <tbody>
+
+                    <tr class="bg-light">
+                    <td>{{value.name}}
+                    </td>
+                    <td>{{value.units}}
+                    </td>
+                    <td>{{value.price}}
+                    </td>
+                    <td>
+                        <form action="/sell/search_products/remove_cart/" method="post" >{% csrf_token %}
+                            <input type="hidden" value="{{value.product_id}}" name="product_id">
+                            <button type="submit" class="btn btn-danger text-center"><i class="fas fa-times text-light"></i></button>
+                        </form>
+                        <form action="/sell/search_products/add_cart/" method="post" >{% csrf_token %}
+                            <input type="hidden" value="1" name="product_units">
+                            <input type="hidden" value="{{value.product_id}}" name="product_id">
+                            <button type="submit" class="btn btn-success text-center"><i class="fas fa-plus"></i></button>
+                        </form>
+                    </td>
+                    </tr>
+                    </tbody>
+        {% endfor %}
+        </table>
+
+    <!-- Resumen -->
+
+    <p class="font-size-5" >Resumen</p>
+    <p class="font-size-2 font-weight-bold"> Buscar clientes por cedula: </p>
+        <form action="/sell/search_clients/" method="get">
+            <div class="col">
+                <input type="text" class="form-control" name="search_cliente" placeholder="Buscar cliente">
+            </div>
+            <div class="col" style="padding: 2vh">
+                <button type="submit" class="btn btn-success"><i class="fas fa-search text-light"></i></button>
+            </div>
+        </form>
+        {% if cliente%}
+            <div class="col font-weight-bold">
+                <p>Cedula: {{cliente.cedula}}</p>
+                <p>Nombre: {{cliente.name}}</p>
+                <p>Apellido {{cliente.apellido}}</p>
+            </div>
+        {% else %}
+            <div class="col font-weight-bold">
+                <p>No se encontro ningun cliente.</p>
+            </div>
+        {% endif %}
+        <div class="col">
+            <p>Descuento: </p>
+                <input type="number" class="form-control">
+            <p>%</p>
+        </div>
+        <div class="col">
+            <p>Efectivo: </p>
+            <input type="number" class="form-control">
+        </div>
+        <div class="col" style="padding-top: 4vh">
+            <p class="font-weight-bold">Subtotal: {{request.session.fact.subtotal}} COP</p>
+        </div>
+        <div class="col" style="padding-top: 4vh">
+            <p class="font-weight-bold">IVA: {{request.session.fact.iva}} %</p>
+        </div>
+        <div class="col" style="padding-top: 4vh">
+            <p class="font-weight-bold">Total: {{request.session.fact.total}} COP</p>
+        </div>
+        <div class="col" style="padding:4vh">
+        <a href="/sell/search_products/clear_cart" class="btn btn-warning text-light">Limpiar Carrito</a>
+        <a href="/sell/fact/" class="btn btn-success">Realizar Compra</a>
+        </div>
+</div>
+ {% endif %}

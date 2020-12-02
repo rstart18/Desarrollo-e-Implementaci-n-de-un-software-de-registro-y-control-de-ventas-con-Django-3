@@ -1,0 +1,99 @@
+
+  {% extends "base.html" %}
+
+  {% block title %}
+    Inicio
+  {% endblock %}
+
+  {% block content %}
+
+  <div class="container-fluid ">
+      {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == "success" %}
+                <div class="alert alert-success alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <p>{{message}}</p>
+                </div>
+            {% endif %}
+            {% if message.tags == "info" %}
+                <div class="alert alert-info alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <p>{{message}}</p>
+                </div>
+            {% endif %}
+            {% if message.tags == "warning" %}
+                <div class="alert alert-warning alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <p>{{message}}</p>
+                </div>
+            {% endif %}
+            {% if message.tags == "error" %}
+                <div class="alert alert-danger alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <p>{{message}}</p>
+                </div>
+            {% endif %}
+        {% endfor %}
+      {% endif %}
+    <div class="row">
+      <div class="col-xl-2 btn btn-primary" style="margin:2%;" >
+        <a href="/products/" style="text-decoration:none;">
+          <p class="font-size-4 text-light">{{n_productos}}</p>
+          <p class="font-size-3 text-light">Productos</p>
+        </a>
+      </div>
+      <div class="col-xl-2 btn btn-success" style="margin:2%;" >
+        <a href="/clients/" style="text-decoration:none;">
+          <p class="font-size-4 text-light">{{n_clientes}}</p>
+          <p class="font-size-3 text-light">Clientes</p>
+        </a>
+      </div>
+      <div class="col-xl-2 btn btn-warning" style="margin:2%;" >
+        <a href="./providers" style="text-decoration:none;">
+          <p class="font-size-4 text-light">1</p>
+          <p class="font-size-3 text-light">Proveedores</p>
+        </a>
+      </div>
+      <div class="col-xl-2 btn btn-danger" style="margin:2%;" >
+        <a href="./categories" style="text-decoration:none;">
+          <p class="font-size-4 text-light">0</p>
+          <p class="font-size-3 text-light">Categorias</p>
+        </a>
+      </div>
+    </div>
+    <table class="table table-bordered table-hover bg-primary">
+	<thead>
+		<tr>
+		  <th class="text-light">Nombre del producto</th>
+		  <th class="text-light">En Stock</th>
+		  <th></th>
+        </tr>
+    </thead>
+    {% if productos %}
+        {% for producto in productos %}
+        <tbody>
+        <tr class="bg-light">
+            <td>{{producto.name}}</td>
+            <td>{{producto.units}}</td>
+            {% if producto.units < 6 %}
+                <td>
+		            <span class="bg-danger text-light">Quedan muy pocas existencias.</span>
+                </td>
+            {% else %}
+                <td></td>
+            {% endif%}
+        </tr>
+        </tbody>
+        {% endfor %}
+    {% else %}
+        <tbody>
+        <tr class="bg-light">
+        <td> No se han encontrado productos.</td>
+        </tr>
+        </tbody>
+    {% endif %}
+    </table>
+  </div>
+
+  {% endblock %}

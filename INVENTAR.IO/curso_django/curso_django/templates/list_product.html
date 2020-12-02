@@ -1,0 +1,44 @@
+{% extends "sell.html" %}
+
+{% block search%}
+<div class="container">
+    <p class="font-size-5" >Lista de productos encontrados</p>
+    <table class="table table-bordered table-hover bg-primary text-center" style="padding:4vh">
+	<thead>
+		<tr>
+		  <th class="text-light">Nombre</th>
+		  <th class="text-light">Stock</th>
+          <th class="text-light">Precio Unitario</th>
+          <th class="text-light"></th>
+        </tr>
+    </thead>
+    {% if productos %}
+        {% for producto in productos %}
+        <tbody>
+        <form action="/sell/search_products/add_cart/" method="post" >{% csrf_token %}
+        <tr class="bg-light">
+            <td>{{producto.name}}
+                <input type="hidden" value="{{producto.id}}" name="product_id">
+            </td>
+            <td>{{producto.units}}</td>
+            <td>{{producto.exit_price}}</td>
+            <td>
+                <input class="control-form" type="number" name="product_units" style="width:6vh;height:4vh">
+                <button type="submit" class="btn btn-success"><i class="fas fa-plus"></i></button>
+            </td>
+        </tr>
+        </form>
+        </tbody>
+        {% endfor %}
+    {% else %}
+        <tbody>
+        <tr class="bg-light">
+        <td> No se han encontrado productos.</td>
+        </tr>
+        </form>
+        </tbody>
+    {% endif %}
+    </table>
+</div>
+
+{% endblock %}
