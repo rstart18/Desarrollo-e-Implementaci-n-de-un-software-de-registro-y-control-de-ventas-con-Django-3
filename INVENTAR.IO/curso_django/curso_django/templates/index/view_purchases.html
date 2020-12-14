@@ -1,0 +1,43 @@
+{% extends 'index/base_principal.html' %}
+{% load tags %}
+  {% block title %}
+    Resumen de Venta
+  {% endblock %}
+
+  {% block content %}
+  <div class="container-fluid " style="padding-top:4vh">
+      <h1>Resumen de venta</h1>
+    <table class="table table-bordered table-hover bg-success">
+	<thead>
+		<tr>
+            <th class="text-light">Unidades</th>
+            <th class="text-light">Producto</th>
+		    <th class="text-light">Precio Unitario</th>
+            <th class="text-light">Total</th>
+            <th class="text-light">Imagen</th>
+        </tr>
+    </thead>
+        <tbody>
+            {% for key,value in products.items %}
+                <tr class="bg-light">
+                    <td>{{value.units}}</td>
+                    <td>{{value.product}}</td>
+                    <td>{% widthratio value.prices value.units 1 %}</td>
+                    <td>{{value.prices}}</td>
+                    <td>
+                        <img src="../curso_django/uploads/{% product_img value.id %}" alt="" width="200vh" height="200vh">
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+      <center>
+          <h4><b>Descuento:</b> {{obj.fact.discount}} %</h4>
+        <h4><b>Total:</b> {{obj.fact.total}}</h4>
+        {% if envio.status == "Enviado" %}
+          <a href="/confirmEnvio/{{envio.no_envio}}" class="btn btn-info text-light">Marcar como recibido</a>
+        {% endif %}
+      </center>
+  </div>
+
+  {% endblock %}

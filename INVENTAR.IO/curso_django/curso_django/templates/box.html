@@ -1,0 +1,34 @@
+
+  {% extends "base.html" %}
+
+  {% block title %}
+    Caja
+  {% endblock %}
+
+  {% block content %}
+
+  <div class="container-fluid " style="padding-top:4vh">
+    <table class="table table-bordered table-hover bg-primary">
+	<thead>
+		<tr>
+		  <th class="text-light">Producto</th>
+		  <th class="text-light">Total</th>
+		  <th class="text-light">Fecha</th>
+        </tr>
+    </thead>
+        <tbody>
+        {% for obj in list %}
+            <tr class="bg-light">
+                <td>{{obj.number}}</td>
+                <td>{{obj.total}}</td>
+                <td>{{obj.date}}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+      <h4>
+          Total: ${{total}}
+      </h4>
+  </div>
+
+  {% endblock %}

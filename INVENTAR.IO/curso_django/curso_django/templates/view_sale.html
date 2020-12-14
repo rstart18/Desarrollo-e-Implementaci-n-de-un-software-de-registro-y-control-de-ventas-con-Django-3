@@ -1,0 +1,37 @@
+
+  {% extends "base.html" %}
+
+  {% block title %}
+    Resumen de Venta
+  {% endblock %}
+
+  {% block content %}
+  <div class="container-fluid " style="padding-top:4vh">
+      <h1>Resumen de venta</h1>
+      <p><b>Cliente:</b> {{obj.cliente.first_name}} {{obj.cliente.last_name}}</p>
+      <p><b>Atendido por:</b> {{obj.fact.seller}}</p>
+    <table class="table table-bordered table-hover bg-primary">
+	<thead>
+		<tr>
+            <th class="text-light">Unidades</th>
+            <th class="text-light">Producto</th>
+		    <th class="text-light">Precio Unitario</th>
+            <th class="text-light">Total</th>
+        </tr>
+    </thead>
+        <tbody>
+            {% for key,value in products.items %}
+                <tr class="bg-light">
+                <td>{{value.units}}</td>
+                <td>{{value.product}}</td>
+                <td>{% widthratio value.prices value.units 1 %}</td>
+                <td>{{value.prices}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+      <h4><b>Descuento:</b> {{obj.fact.discount}} %</h4>
+      <h4><b>Total:</b> {{obj.fact.total}}</h4>
+  </div>
+
+  {% endblock %}

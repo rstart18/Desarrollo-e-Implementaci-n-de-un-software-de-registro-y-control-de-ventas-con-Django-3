@@ -1,0 +1,38 @@
+#Changelog
+
+# [1.0.0] - 2020-06-12
+### Añadido
+-Redireccionar el cierre de sesion al index
+-Nuevo Footer en la pagina principal
+-En la vista de usuarios se enumera cada usuario
+-Nueva interfaz de buscar un usuario por cedula para saber si existe
+-Nuevos grupos de usuario
+-Registro de nuevos Usuarios Clientes
+
+### Cambiado
+-Se arreglo el campo cedula del modelo Usuarios es irrepetible
+-Se arreglol campo cedula del modelo Usuarios tiene que ser entre 6-10 digitos
+-Se arreglo el buscador de Usuarios Clientes
+-Mision y vision
+
+### Removido
+
+
+# [1.1.0] - 2020-14-12
+### Añadido
+-Realizar venta
+-Gestion de ventas
+-Gestion de productos + (Inventario, Abastecer, Abastecimientos)
+-Caja (ventas diarias)
+-Gestion de Categorias
+-Gestion de Proveedores
+-Gestion de Clientes
+-Generacion y confirmacion de envios
+-Generacion de reportes (web,pdf)
+-Gestion de compra (carrito, obtencion de tarjeta de credito,realizacion de venta,generacion de factura,generacion de envio)
+-Mi perfil
+
+### Cambiado
+
+
+### Removido

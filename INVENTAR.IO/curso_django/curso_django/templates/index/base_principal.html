@@ -61,25 +61,92 @@
                   Acerca de nosotros
                 </a>
               </li>
-              <li class="nav-item active">
+                {% if not user.is_authenticated %}
+                    <li class="nav-item active">
                 <a href="/login/" class="btn-success text-center nav-link">
                   <i class="fa fa-user-lock text-light text-center nav-link" aria-hidden="true"></i>
                   Inicia Sesion
                 </a>
               </li>
+                {% endif %}
             </ul>
               {% if user.is_authenticated %}
-                <li>
-                <a href="/users/logout/" class="btn-success text-center nav-link">Cerrar Sesion</a>
+                <li class="nav-item dropdown active">
+                <a href="#Perfil" class="btn-success text-center nav-link dropdown-toggle" data-toggle="dropdown">
+                  <i class="fas fa-user-alt text-light text-center nav-link"></i>
+                  Perfil
+                </a>
+                <div class="dropdown-menu">
+                    <a href="/profile/" class="dropdown-item">Mi Perfil</a>
+                    <a href="/cart/" class="dropdown-item">Mi Carrito</a>
+                    <a href="/purchases/" class="dropdown-item">Compras</a>
+                    <a href="/users/logout/" class="dropdown-item">Cerrar Sesion</a>
+                </div>
                 </li>
               {% endif %}
           </div>
         </nav>
+
+        {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == "success" %}
+                <div class="alert alert-success alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <p>{{message}}</p>
+                </div>
+            {% endif %}
+            {% if message.tags == "info" %}
+                <div class="alert alert-info alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <p>{{message}}</p>
+                </div>
+            {% endif %}
+            {% if message.tags == "warning" %}
+                <div class="alert alert-warning alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <p>{{message}}</p>
+                </div>
+            {% endif %}
+            {% if message.tags == "error" %}
+                <div class="alert alert-danger alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <p>{{message}}</p>
+                </div>
+            {% endif %}
+        {% endfor %}
+      {% endif %}
+
     </div>
 
     {% block content %}
 
     {% endblock %}
+
+    <footer class="footer" style="padding-top:4vh">
+  <div class="container text-dark" style="border-style: solid none none none">
+    <br>
+    <div class="row">
+      <div class="col-12 col-md-4 col-lg-2">
+        <h4>Facebook</h4>
+        <p><i class="fab fa-facebook"></i> <a href="#">/usuario</a></p>
+        <h4>Instagram</h4>
+        <p><i class="fab fa-instagram"></i> <a href="#">/usuario</a></p>
+      </div>
+      <div class="col-12 col-md-4 col-lg-4">
+        <h4 id="contacto">Contacto</h4>
+        <p>Colombia</p>
+        <p>Direcci&oacute;n: Villa del Rosario - Norte de Santander<br> Tel&eacute;fonos: +57 320 3094498
+          <br> eMail: admin@inventario.com
+        </p>
+      </div>
+      <div class="col-12 col-md-4 col-lg-6">
+        <p>
+          Copyright 2020 © INVENTAR.IO
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
 
 </body>
 </html>

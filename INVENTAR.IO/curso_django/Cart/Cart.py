@@ -52,3 +52,14 @@ class Cart:
         subtotal = int(total - (total * (iva * 0.01)))
         return {"total": total, "iva": iva, "subtotal": subtotal}
 
+    def discount(self,discount):
+        total = 0
+        for key, value in self.cart.items():
+            total = total + value['price']
+        iva = 19
+        total = total - (total * (int(discount) * 0.01))
+        subtotal = int(total - (total * (iva * 0.01)))
+        self.fact = {"total": total, "iva": iva, "subtotal": subtotal,"discount":discount}
+        self.save()
+
+

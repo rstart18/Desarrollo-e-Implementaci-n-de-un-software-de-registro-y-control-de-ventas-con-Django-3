@@ -1,0 +1,70 @@
+{% extends 'index/base_principal.html' %}
+{% load tags %}
+{% block title %}
+    Inicio
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+    {% if request.session.cart.items %}
+
+            <p class="font-size-5" >Carrito de Compra</p>
+            <table class="table table-bordered table-hover bg-success text-center" style="padding:4vh">
+            <thead>
+                <tr>
+                    <th class="text-light">Producto</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            {% for key,value in request.session.cart.items %}
+                        <tbody>
+
+                        <tr class="bg-light">
+                        <td>
+                            <b>Nombre: </b>{{value.name}}<br>
+                            <b>Unidades: </b>{{value.units}}<br>
+                            <img src="../curso_django/uploads/{% product_img value.product_id %}" alt="" width="200vh" height="200vh"><br>
+                            <b>Precio Acumulado: </b>{{value.price}}<br>
+                        </td>
+                        <td>
+                            <form action="/sell/search_products/remove_cart/" method="post" style="padding-top:25%;padding-bottom:25%" >{% csrf_token %}
+                                <input type="hidden" value="{{value.product_id}}" name="product_id">
+                                <button type="submit" class="btn btn-danger text-center"><i class="fas fa-times text-light"></i></button>
+                            </form>
+                            <form action="/sell/search_products/add_cart/" method="post" >{% csrf_token %}
+                                <input type="hidden" value="1" name="product_units">
+                                <input type="hidden" value="{{value.product_id}}" name="product_id">
+                                <button type="submit" class="btn btn-success text-center"><i class="fas fa-plus"></i></button>
+                            </form>
+                        </td>
+                        </tr>
+                        </tbody>
+            {% endfor %}
+            </table>
+            {% if request.session.fact.discount %}
+            <div class="col" style="padding-top: 4vh">
+                <p class="font-weight-bold">Descuento: {{request.session.fact.discount}} %</p>
+            </div>
+            {% endif%}
+
+            <div class="col" style="padding-top: 4vh">
+                <p class="font-weight-bold">Subtotal: {{request.session.fact.subtotal}} COP</p>
+            </div>
+            <div class="col" style="padding-top: 4vh">
+                <p class="font-weight-bold">IVA: {{request.session.fact.iva}} %</p>
+            </div>
+            <div class="col" style="padding-top: 4vh">
+                <p class="font-weight-bold">Total: {{request.session.fact.total}} COP</p>
+            </div>
+            <div class="col" style="padding:4vh">
+            <a href="/sell/search_products/clear_cart" class="btn btn-warning text-light">Limpiar Carrito</a>
+            <a href="/confirmCreditCard/" class="btn btn-success">Realizar Compra</a>
+            </div>
+        {% else %}
+            <center style="padding-top:10%;padding-bottom:10%">
+                <h2> No tienes productos en tu carrito</h2>
+            </center>
+        {% endif %}
+        </div>
+{% endblock %}

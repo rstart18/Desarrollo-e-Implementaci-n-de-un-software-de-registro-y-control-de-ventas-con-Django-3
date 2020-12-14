@@ -10,19 +10,22 @@
             {% if productos%}
                 {% for producto in productos %}
                     <div class="col-xl-3">
-                        <div class="btn btn-success" style="margin-bottom: 4vh">
-                            <img src="data:image/png;base64,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" alt="">
-                            <div class="row text-light">
-                                <div class="col">
-                                    <p>{{producto.name}}</p>
+                        <div class="btn " style="margin-bottom: 4vh">
+                            <img src="../curso_django/uploads/{{producto.imagen}}" alt="" width="200vh" height="200vh">
+                            <form action="/sell/search_products/add_cart/" method="post" >{% csrf_token %}
+                                <input type="hidden" name="product_id" value="{{producto.id}}">
+                                <div class="row">
+                                    <div class="col">
+                                        <p>{{producto.name}}</p>
+                                    </div>
+                                    <div class="col">
+                                        <p>{{producto.exit_price}}COP$</p>
+                                    </div>
+                                    <div class="col">
+                                        <button type="submit" class="btn btn-warning text-light">Comprar</button>
+                                    </div>
                                 </div>
-                                <div class="col">
-                                    <p>{{producto.exit_price}}COP$</p>
-                                </div>
-                                <div class="col">
-                                    <a href="#" class="btn btn-light">Comprar</a>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 {% endfor %}

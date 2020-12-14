@@ -1,0 +1,32 @@
+{% extends 'index/base_principal.html' %}
+{% load tags %}
+{% block title %}
+    Inicio
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        {% if envios %}
+            {% for envio in envios%}
+                <center>
+                    {% if envio.status == "Esperando envio" %}
+                    <div class="col-xl-4 btn btn-primary" style="margin:2%;" >
+                    {% elif envio.status == "Enviado" %}
+                    <div class="col-xl-4 btn btn-warning" style="margin:2%;" >
+                    {% else %}
+                    <div class="col-xl-4 btn btn-success" style="margin:2%;" >
+                    {% endif %}
+                    <a href="/view_purchases/{{envio.no_envio}}" style="text-decoration:none;">
+                    <p class="font-size-4 text-light">N°Envio: {{envio.no_envio}}</p>
+                    <p class="font-size-3 text-light">Estado: {{envio.status}}</p>
+                    </a>
+                    </div>
+                </center>
+            {% endfor %}
+        {% else %}
+            <center style="padding-top:10%;padding-bottom:10%">
+                <h2> No tienes compras</h2>
+            </center>
+        {% endif %}
+    </div>
+{% endblock %}

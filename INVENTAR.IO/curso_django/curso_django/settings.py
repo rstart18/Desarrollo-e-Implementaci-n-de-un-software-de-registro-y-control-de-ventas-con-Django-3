@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
+    'reportlab',
     'gestionVenta',
     'Almacen',
     'Usuarios',
@@ -70,9 +72,17 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+        'libraries':{
+            'tags': 'curso_django.templatetags.tags',
+
+            }
         },
     },
 ]
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.request',
+)
 
 WSGI_APPLICATION = 'curso_django.wsgi.application'
 
@@ -125,5 +135,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+AUTH_USER_MODEL = 'Usuarios.User'
+
+MEDIA_URL = 'curso_django/uploads/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'curso_django/uploads/')
+
 #LOGIN_URL = '/users/login/'
 #LOGIN_REDIRECT_URL = '/users/login/'

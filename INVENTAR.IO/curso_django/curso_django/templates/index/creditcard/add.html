@@ -1,0 +1,16 @@
+{% extends 'index/base_principal.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Añadir Tarjeta de Credito
+{% endblock %}
+
+{% block content %}
+    <div class="container center-block" style="padding: 2vh">
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button class="btn btn-success" type="submit">Añadir</button>
+        </form>
+    </div>
+{% endblock %}

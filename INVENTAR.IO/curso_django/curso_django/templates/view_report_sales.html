@@ -1,0 +1,53 @@
+{% extends 'base.html'%}
+{% load tags %}
+{% block title %}
+    Reporte Inventario
+{% endblock %}
+{% block content %}
+
+    <div class="container center-block">
+        <div class="form-inline" style="padding: 4vh;">
+        </div>
+        <table class="table table-bordered table-hover bg-primary">
+	        <thead>
+		    <tr>
+                <th class="text-light text-center">Nombre de Cliente</th>
+                <th class="text-light text-center">Factura</th>
+                <th class="text-light text-center">Total</th>
+                <th class="text-light text-center">Vendedor</th>
+                <th class="text-light text-center">Fecha</th>
+            </tr>
+            </thead>
+        {% if list %}
+            {% for object in list %}
+                <tbody>
+                <tr class="bg-light">
+                    <td class="text-center">
+                        {{object.cliente.first_name}} {{object.cliente.last_name}}
+                    </td>
+                    <td class="text-center">
+                        {{object.fact}}
+                    </td>
+                    <td class="text-center">
+                        {{object.fact.total}}
+                    </td>
+                    <td class="text-center">
+                        {{object.fact.seller}}
+                    </td>
+                    <td class="text-center">
+                        {{ object.fact.date|date:'d/m/Y' }}
+                    </td>
+                </tr>
+                </tbody>
+            {% endfor %}
+        {% else %}
+            <tbody>
+                <tr class="bg-light">
+                    <td>No se encontraron resultados</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        {% endif%}
+        </table>
+    </div>
+ {% endblock %}

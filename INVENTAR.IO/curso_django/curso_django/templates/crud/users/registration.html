@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Registrar Usuarios
+{% endblock %}
+
+{% block content %}
+    <div class="container center-block" style="padding: 2vh">
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <div id="div_id_permision" class="form-group">
+                <input type="checkbox" name="permision">
+                Es admin ?
+            </div>
+            <button class="btn btn-success" type="submit">Registrar</button>
+        </form>
+    </div>
+{% endblock %}

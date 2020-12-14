@@ -1,0 +1,60 @@
+{% extends 'base.html'%}
+{% block title %}
+    Reporte Inventario
+{% endblock %}
+{% block content %}
+
+    <div class="container center-block">
+        <div class="form-inline" style="padding: 4vh;">
+        </div>
+        <table class="table table-bordered table-hover bg-primary">
+	        <thead>
+		    <tr>
+                <th class="text-light text-center">Productos</th>
+                <th class="text-light text-center">Unidades</th>
+                <th class="text-light text-center">Precio Entrada</th>
+                <th class="text-light text-center">Precio Salida</th>
+                <th class="text-light text-center">Proveedor</th>
+                <th class="text-light text-center">Categoria</th>
+                <th class="text-light text-center">Imagen</th>
+            </tr>
+            </thead>
+        {% if list %}
+            {% for object in list %}
+                <tbody>
+                <tr class="bg-light">
+                    <td class="text-center">
+                        {{object.name}}
+                    </td>
+                    <td class="text-center">
+                        {{object.units}}
+                    </td>
+                    <td class="text-center">
+                        {{object.enter_price}}
+                    </td>
+                    <td class="text-center">
+                        {{object.exit_price}}
+                    </td>
+                    <td class="text-center">
+                        {{object.Proveedor}}
+                    </td>
+                    <td class="text-center">
+                        {{object.Categoria}}
+                    </td>
+                    <td>
+                        <img src="../../../curso_django/uploads/{{object.imagen}}" alt="" width="100vh" height="100vh">
+                    </td>
+                </tr>
+                </tbody>
+            {% endfor %}
+        {% else %}
+            <tbody>
+                <tr class="bg-light">
+                    <td>No se encontraron resultados</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        {% endif%}
+        </table>
+    </div>
+ {% endblock %}

@@ -8,37 +8,9 @@
   {% block content %}
 
   <div class="container-fluid ">
-      {% if messages %}
-        {% for message in messages %}
-            {% if message.tags == "success" %}
-                <div class="alert alert-success alert-dismissable">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <p>{{message}}</p>
-                </div>
-            {% endif %}
-            {% if message.tags == "info" %}
-                <div class="alert alert-info alert-dismissable">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <p>{{message}}</p>
-                </div>
-            {% endif %}
-            {% if message.tags == "warning" %}
-                <div class="alert alert-warning alert-dismissable">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <p>{{message}}</p>
-                </div>
-            {% endif %}
-            {% if message.tags == "error" %}
-                <div class="alert alert-danger alert-dismissable">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <p>{{message}}</p>
-                </div>
-            {% endif %}
-        {% endfor %}
-      {% endif %}
     <div class="row">
       <div class="col-xl-2 btn btn-primary" style="margin:2%;" >
-        <a href="/products/" style="text-decoration:none;">
+        <a href="/warehouse/products/1" style="text-decoration:none;">
           <p class="font-size-4 text-light">{{n_productos}}</p>
           <p class="font-size-3 text-light">Productos</p>
         </a>
@@ -50,14 +22,14 @@
         </a>
       </div>
       <div class="col-xl-2 btn btn-warning" style="margin:2%;" >
-        <a href="./providers" style="text-decoration:none;">
-          <p class="font-size-4 text-light">1</p>
+        <a href="/warehouse/providers/1" style="text-decoration:none;">
+          <p class="font-size-4 text-light">{{n_proveedores}}</p>
           <p class="font-size-3 text-light">Proveedores</p>
         </a>
       </div>
       <div class="col-xl-2 btn btn-danger" style="margin:2%;" >
-        <a href="./categories" style="text-decoration:none;">
-          <p class="font-size-4 text-light">0</p>
+        <a href="/warehouse/categorys/1" style="text-decoration:none;">
+          <p class="font-size-4 text-light">{{n_categorias}}</p>
           <p class="font-size-3 text-light">Categorias</p>
         </a>
       </div>

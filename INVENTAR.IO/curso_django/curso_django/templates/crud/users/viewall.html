@@ -1,0 +1,83 @@
+{% extends 'base.html'%}
+{% block title %}
+    Usuarios
+{% endblock %}
+{% block content %}
+
+    <div class="container center-block">
+        <div class="form-inline" style="padding: 4vh;">
+            <a href="/users/user_is_exist/" class="btn btn-success text-light" style="margin:2vh">Registrar
+                Usuarios</a>
+            <form action="" method="post">{% csrf_token %}
+                <input class="form-control" type="text" name="search" placeholder="Busca por cedula" style="margin:2vh" >
+                <button class="btn btn-success" ><i class="fas fa-search text-light" ></i></button>
+            </form>
+        </div>
+        <table class="table table-bordered table-hover bg-primary">
+	        <thead>
+		    <tr>
+                <th class="text-light text-center">Usuario</th>
+		        <th></th>
+            </tr>
+            </thead>
+        {% if list %}
+            {% for object in list %}
+                <tbody>
+                <tr class="bg-light">
+                    <td class="text-center">
+                        {{n_users|add:forloop.counter}}
+                    </td>
+                    <td class="text-center">
+                        {{object.username}}
+                    </td>
+                    <td>
+                        <center>
+                        <a href="/users/edit/{{object.id}}" class="btn btn-warning text-light"><i class="fas fa-edit text-light"></i></a>
+                        <a href="/users/delete/{{object.id}}" class="btn btn-danger text-light"><i class="fas fa-trash-alt text-light"></i></a>
+                        </center>
+                    </td>
+                </tr>
+                </tbody>
+            {% endfor %}
+        {% else %}
+            <tbody>
+                <tr class="bg-light">
+                    <td>No se encontraron resultados</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        {% endif%}
+        </table>
+        <div class="container">
+            <div class="row">
+                <div class="col text-center">
+                    {% if prev %}
+                    <a href="/users/{{prev_pag}}" class="btn btn-default pull-center" style="font-size:2vh"><i class="fas fa-caret-square-left fa-2x"></i></a>
+                    {% endif %}
+                </div>
+                {% if pag != 1 %}
+                    <div class="col-xs text-center">
+                    <a href="/users/1" class="btn btn-default pull-center" style="font-size:2vh">1</a>
+                    </div>
+                {% endif %}
+                <div class="col-xs text-center">
+                    <a href="/users/{{pag}}" class="btn btn-primary" style="font-size:2vh">{{pag}}</a>
+                </div>
+                {% for numbers in pags %}
+                    {% if next %}
+                        <div class="col-xs text-center">
+                        <a href="/users/{{numbers}}" class="btn btn-default" style="font-size:2vh">{{numbers}}</a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                <div class="col text-center">
+                    {% if next %}
+                    <a href="/users/{{next_pag}}" class="btn btn-default" style="font-size:2vh"><i class="fas fa-caret-square-right fa-2x"></i></a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

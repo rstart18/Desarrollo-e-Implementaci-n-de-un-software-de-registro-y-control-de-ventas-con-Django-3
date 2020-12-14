@@ -1,0 +1,58 @@
+{% extends 'index/base_principal.html' %}
+{% block title %}
+    Inicio
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="col" style="padding:4vh">
+          <center>
+                <h1>
+                    Mi perfil
+                </h1>
+                <div>
+                    <h5>
+                        Nombre de Usuario:
+                    </h5>
+                    <p>
+                        {{ user.username }}
+                    </p>
+                </div>
+                <div>
+                    <h5>
+                        Nombre:
+                    </h5>
+                    <p>
+                        {{ user.first_name }}
+                    </p>
+                </div>
+                <div>
+                    <h5>
+                        Apellido:
+                    </h5>
+                    <p>
+                        {{ user.last_name }}
+                    </p>
+                </div>
+                <div>
+                    <h5>
+                        Cedula:
+                    </h5>
+                    <p>
+                        {{ user.cedula }}
+                    </p>
+                </div>
+                <div>
+                    <h5>
+                        Email:
+                    </h5>
+                    <p>
+                        {{ user.email }}
+                    </p>
+                </div>
+            </center>
+        </div>
+    </div>
+
+{% endblock %}
