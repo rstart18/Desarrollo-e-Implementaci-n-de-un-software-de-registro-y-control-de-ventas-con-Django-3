@@ -4,3 +4,7 @@ El proyecto se realizó con base en los lineamientos de la metodología diagrama
 # Interfaz
 
 ![alt text](https://raw.githubusercontent.com/rstart18/Desarrollo-e-Implementaci-n-de-un-software-de-registro-y-control-de-ventas-con-Django-3/master/INVENTAR.IO/curso_django/curso_django/uploads/img/logo/PANTALLAZO1.png)
+
+![alt text](https://raw.githubusercontent.com/rstart18/Desarrollo-e-Implementaci-n-de-un-software-de-registro-y-control-de-ventas-con-Django-3/master/INVENTAR.IO/curso_django/curso_django/uploads/img/logo/PANTALLAZO2.png)
+
+![alt text](https://raw.githubusercontent.com/rstart18/Desarrollo-e-Implementaci-n-de-un-software-de-registro-y-control-de-ventas-con-Django-3/master/INVENTAR.IO/curso_django/curso_django/uploads/img/logo/PANTALLAZO3.png)
